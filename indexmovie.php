@@ -7,25 +7,24 @@
     <title>Document</title>
 </head>
 <body>
-
 <?php
     require_once("dbmovie.php");
     session_start();
     if(isset($_POST['login'])) {
-        $sql = "SELECT * FROM student62 WHERE student_id = '{$_POST['student_id']}' AND student_pin = '{$_POST['student_pin']}'";
+        $sql = "SELECT * FROM movie64 WHERE p_movie = '{$_POST['p_movie']}' AND pin = '{$_POST['pin']}'";
         $result = $conn->query($sql);
         if($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $_SESSION["student_id"] = $row['student_id'];
+            $_SESSION["p_movie"] = $row['p_movie'];
         } else {
-            echo "<p>???????</p>";
+            echo "<p>รหัสผิด</p>";
         }
     }
     if(isset($_POST['logout'])) {
         session_unset();
     }
-    if(isset($_SESSION['student_id'])) {
-        require_once("table5.php");
+    if(isset($_SESSION['p_movie'])) {
+        require_once("table10.php");
     } else {
         require_once("login.php");
     }
